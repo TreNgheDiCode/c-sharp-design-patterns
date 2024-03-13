@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Design_Pattern.Singleton
+﻿namespace Design_Pattern.Singleton
 {
     // Code này khá tệ, chỉ để tham khảo cách triển khai sử dụng lock thôi, đừng nên làm theo!
     // "sealed" sẽ làm cho lớp không thể được kế thừa từ bất kì nơi nào khác

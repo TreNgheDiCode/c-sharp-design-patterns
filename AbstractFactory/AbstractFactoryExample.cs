@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Design_Pattern.AbstractFactory
+﻿namespace Design_Pattern.AbstractFactory
 {
     #region Bài toán đặt ra
     // Tôi muốn tạo một cửa hàng bán nội thất và một nhóm sản phẩm mình cần quản lý là: Bàn cà phê, ghế, sofa.

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Design_Pattern.Singleton
+﻿namespace Design_Pattern.Singleton
 {
     // "sealed" sẽ làm cho lớp không thể được kế thừa từ bất kì nơi nào khác
     public sealed class Singleton
