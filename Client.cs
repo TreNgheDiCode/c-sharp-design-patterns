@@ -2,6 +2,7 @@
 using Design_Pattern.Adapter;
 using Design_Pattern.Builder;
 using Design_Pattern.Decorator;
+using Design_Pattern.Facade;
 using Design_Pattern.Prototype;
 using Design_Pattern.Singleton;
 using System.Text;
@@ -188,14 +189,31 @@ namespace DesignPatternsEx
         #endregion
 
         #region Adapter
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Adapter Pattern Demo * **\n");
+
+        //    Triangle t = new(20, 10);
+        //    Console.WriteLine("Area of Triangle is " + CalculatorAdapter.GetArea(t) + " Square unit");
+
+        //    Console.ReadKey();
+        //}
+        #endregion
+
+        #region Facade
         static void Main(string[] args)
         {
-            Console.WriteLine("***Adapter Pattern Demo * **\n");
+            Console.WriteLine("***Facade Pattern Demo * **\n");
 
-            Triangle t = new(20, 10);
-            Console.WriteLine("Area of Triangle is " + CalculatorAdapter.GetArea(t) + " Square unit");
+            //Creating Robots
+            RobotFacade.ConstructMilanoRobot();
+            RobotFacade.ConstructRobonautRobot();
 
-            Console.ReadKey();
+            //Destroying robots
+            RobotFacade.DestroyMilanoRobot();
+            RobotFacade.DestroyRobonautRobot();
+
+            Console.ReadLine();
         }
         #endregion
     }
