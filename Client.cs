@@ -3,6 +3,7 @@ using Design_Pattern.Adapter;
 using Design_Pattern.Builder;
 using Design_Pattern.Decorator;
 using Design_Pattern.Facade;
+using Design_Pattern.FlyWeight;
 using Design_Pattern.Prototype;
 using Design_Pattern.Singleton;
 using System.Text;
@@ -201,19 +202,64 @@ namespace DesignPatternsEx
         #endregion
 
         #region Facade
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Facade Pattern Demo * **\n");
+
+        //    // Creating Robots
+        //    RobotFacade.ConstructMilanoRobot();
+        //    RobotFacade.ConstructRobonautRobot();
+
+        //    // Destroying robots
+        //    RobotFacade.DestroyMilanoRobot();
+        //    RobotFacade.DestroyRobonautRobot();
+
+        //    Console.ReadLine();
+        //}
+        #endregion
+
+        #region FlyWeight
         static void Main(string[] args)
         {
-            Console.WriteLine("***Facade Pattern Demo * **\n");
+            Console.WriteLine("***Flyweight Pattern Demo * **\n");
+            RobotFactory myfactory = new();
+            IRobot shape =
+            myfactory.GetRobotFromFactory("Small");
+            shape.Print();
+            /*
+             * Now we are trying to get the 2 more
+            Small robots.
+             * Note that: now onwards we need not
+            create additional small robots because
+            we have already created one of this
+            category
+            */
+            for (int i = 0; i < 2; i++)
+            {
+                shape =
+                myfactory.GetRobotFromFactory("Small");
+                shape.Print();
+            }
+            
+            int NumOfDistinctRobots = myfactory.TotalObjectsCreated;
+            Console.WriteLine("\n Now, total numbers of distinct robot objects is = {0}\n", NumOfDistinctRobots);
+            /*
+             * Here we are trying to get the 5 more Large robots.
+             * Note that: now onwards we need not
+            create additional small robots because we have already
+            created one of this category
+            */
+            for (int i = 0; i < 5; i++)
+            {
+                shape =
+                myfactory.GetRobotFromFactory("Large");
+                shape.Print();
+            }
+            
+            NumOfDistinctRobots = myfactory.TotalObjectsCreated;
+            Console.WriteLine("\n Distinct Robot objects created till now = {0}", NumOfDistinctRobots);
 
-            //Creating Robots
-            RobotFacade.ConstructMilanoRobot();
-            RobotFacade.ConstructRobonautRobot();
-
-            //Destroying robots
-            RobotFacade.DestroyMilanoRobot();
-            RobotFacade.DestroyRobonautRobot();
-
-            Console.ReadLine();
+            Console.ReadKey();
         }
         #endregion
     }
