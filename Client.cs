@@ -7,7 +7,8 @@ using Design_Pattern.FlyWeight;
 using Design_Pattern.Prototype;
 using Design_Pattern.Singleton;
 using System.Text;
-using static Design_Pattern.Proxy.DefaultProxy;
+using Design_Pattern.Proxy;
+using Design_Pattern.Composite;
 
 namespace DesignPatternsEx
 {
@@ -219,45 +220,105 @@ namespace DesignPatternsEx
         #endregion
 
         #region FlyWeight
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Flyweight Pattern Demo * **\n");
+        //    RobotFactory myfactory = new();
+        //    IRobot shape =
+        //    myfactory.GetRobotFromFactory("Small");
+        //    shape.Print();
+        //    /*
+        //     * Now we are trying to get the 2 more
+        //    Small robots.
+        //     * Note that: now onwards we need not
+        //    create additional small robots because
+        //    we have already created one of this
+        //    category
+        //    */
+        //    for (int i = 0; i < 2; i++)
+        //    {
+        //        shape =
+        //        myfactory.GetRobotFromFactory("Small");
+        //        shape.Print();
+        //    }
+            
+        //    int NumOfDistinctRobots = myfactory.TotalObjectsCreated;
+        //    Console.WriteLine("\n Now, total numbers of distinct robot objects is = {0}\n", NumOfDistinctRobots);
+        //    /*
+        //     * Here we are trying to get the 5 more Large robots.
+        //     * Note that: now onwards we need not
+        //    create additional small robots because we have already
+        //    created one of this category
+        //    */
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        shape =
+        //        myfactory.GetRobotFromFactory("Large");
+        //        shape.Print();
+        //    }
+            
+        //    NumOfDistinctRobots = myfactory.TotalObjectsCreated;
+        //    Console.WriteLine("\n Distinct Robot objects created till now = {0}", NumOfDistinctRobots);
+
+        //    Console.ReadKey();
+        //}
+        #endregion
+
+        #region Composite
         static void Main(string[] args)
         {
-            Console.WriteLine("***Flyweight Pattern Demo * **\n");
-            RobotFactory myfactory = new();
-            IRobot shape =
-            myfactory.GetRobotFromFactory("Small");
-            shape.Print();
-            /*
-             * Now we are trying to get the 2 more
-            Small robots.
-             * Note that: now onwards we need not
-            create additional small robots because
-            we have already created one of this
-            category
-            */
-            for (int i = 0; i < 2; i++)
-            {
-                shape =
-                myfactory.GetRobotFromFactory("Small");
-                shape.Print();
-            }
-            
-            int NumOfDistinctRobots = myfactory.TotalObjectsCreated;
-            Console.WriteLine("\n Now, total numbers of distinct robot objects is = {0}\n", NumOfDistinctRobots);
-            /*
-             * Here we are trying to get the 5 more Large robots.
-             * Note that: now onwards we need not
-            create additional small robots because we have already
-            created one of this category
-            */
-            for (int i = 0; i < 5; i++)
-            {
-                shape =
-                myfactory.GetRobotFromFactory("Large");
-                shape.Print();
-            }
-            
-            NumOfDistinctRobots = myfactory.TotalObjectsCreated;
-            Console.WriteLine("\n Distinct Robot objects created till now = {0}", NumOfDistinctRobots);
+            Console.WriteLine("***Composite Pattern Demo * **");
+
+            // Principal of the college
+            CompositeEmployee Principal = new("Dr.S.Som(Principal)", "PlanningSupervising-Managing");
+
+            // The College has 2 Head of Departments - One from Mathematics, 1 from Computer Sc.
+            CompositeEmployee hodMaths = new("Mrs.S.Das(HOD-Maths)", "Maths");
+            CompositeEmployee hodCompSc = new("Mr. V.Sarcar(HOD-CSE)", "ComputerSc.");
+
+            // 2 other teachers works in Mathematics department
+            Employee mathTeacher1 = new("Math Teacher - 1", "Maths");
+            Employee mathTeacher2 = new("Math Teacher - 2", "Maths");
+
+            // 3 other teachers works in Computer Sc. department
+            Employee cseTeacher1 = new("CSE Teacher - 1","Computer Sc.");
+            Employee cseTeacher2 = new("CSE Teacher - 2", "Computer Sc.");
+            Employee cseTeacher3 = new("CSE Teacher - 3", "Computer Sc.");
+
+            // Teachers of Mathematics directly reports to HOD - Maths
+            hodMaths.Add(mathTeacher1);
+            hodMaths.Add(mathTeacher2);
+
+            // Teachers of Computer Sc. directly reports to HOD - CSE
+            hodCompSc.Add(cseTeacher1);
+            hodCompSc.Add(cseTeacher2);
+            hodCompSc.Add(cseTeacher3);
+
+            // Principal is on top of college
+            // HOD -Maths and Comp. Sc directly reports to him
+            Principal.Add(hodMaths);
+            Principal.Add(hodCompSc);
+
+            // Printing the leaf-nodes and branche in the same way.
+            // i.e. in each case, we are calling PrintStructures()
+            // methodConsole.WriteLine("\n Testing the structure of a Principal object");
+
+            // Prints the complete structure
+            Principal.PrintStructures();
+            Console.WriteLine("\n Testing the structure of a HOD object:");
+            Console.WriteLine("Teachers working at Computer Science department: ");
+
+            //Prints the details of Computer Sc. department
+            hodCompSc.PrintStructures();
+
+            //Leaf node
+            Console.WriteLine("\n Testing the structure of a leaf node: ");
+            mathTeacher1.PrintStructures();
+
+            //Suppose, one computer teacher is leaving now from the organization.
+            hodCompSc.Remove(cseTeacher2);
+            Console.WriteLine("\n After CSE Teacher - 2 resigned, the organization has following members: ");
+            Principal.PrintStructures();
 
             Console.ReadKey();
         }

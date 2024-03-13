@@ -6,42 +6,39 @@ using System.Threading.Tasks;
 
 namespace Design_Pattern.Proxy
 {
-    public class DefaultProxy
+    /// <summary>
+    /// Abstract class Subject
+    /// </summary>
+    public abstract class Subject
     {
-        /// <summary>
-        /// Abstract class Subject
-        /// </summary>
-        public abstract class Subject
+        public abstract void DoSomeWork();
+    }
+
+    /// <summary>
+    /// ConcreteSubject class
+    /// </summary>
+    public class ConcreteSubject : Subject
+    {
+        public override void DoSomeWork()
         {
-            public abstract void DoSomeWork();
+            Console.WriteLine("ConcreteSubject.DoSomeWork()");
         }
+    }
 
-        /// <summary>
-        /// ConcreteSubject class
-        /// </summary>
-        public class ConcreteSubject : Subject
+    /// <summary>
+    /// Proxy class
+    /// </summary>
+    public class Proxy : Subject
+    {
+        Subject cs = null!;
+        public override void DoSomeWork()
         {
-            public override void DoSomeWork()
-            {
-                Console.WriteLine("ConcreteSubject.DoSomeWork()");
-            }
-        }
+            Console.WriteLine("Proxy call happening now...");
 
-        /// <summary>
-        /// Proxy class
-        /// </summary>
-        public class Proxy : Subject
-        {
-            Subject cs;
-            public override void DoSomeWork()
-            {
-                Console.WriteLine("Proxy call happening now...");
+            //Lazy initialization:We'll not instantiate until the method is //called
+            cs ??= new ConcreteSubject();
 
-                //Lazy initialization:We'll not instantiate until the method is //called
-                cs ??= new ConcreteSubject();
-
-                cs.DoSomeWork();
-            }
+            cs.DoSomeWork();
         }
     }
 }
