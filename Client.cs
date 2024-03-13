@@ -1,5 +1,6 @@
 ﻿using Design_Pattern.AbstractFactory;
 using Design_Pattern.Builder;
+using Design_Pattern.Decorator;
 using Design_Pattern.Prototype;
 using Design_Pattern.Singleton;
 using System.Text;
@@ -45,7 +46,7 @@ namespace DesignPatternsEx
         //    // trên ModelName và Price
         //    BasicCar nano_base = new Nano("Green Nano") {Price = 100000};
         //    BasicCar ford_base = new Ford("Ford Yellow") {Price = 500000};
-            
+
         //    BasicCar bc1;
 
         //    // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Nano
@@ -159,11 +160,28 @@ namespace DesignPatternsEx
         #endregion
 
         #region Proxy
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Proxy Pattern Demo * **\n");
+        //    Proxy px = new Proxy();
+        //    px.DoSomeWork();
+        //    Console.ReadKey();
+        //}
+        #endregion
+
+        #region Decorator
         static void Main(string[] args)
         {
-            Console.WriteLine("***Proxy Pattern Demo * **\n");
-            Proxy px = new Proxy();
-            px.DoSomeWork();
+            Console.WriteLine("***Decorator pattern Demo * **\n");
+            ConcreteComponent cc = new(); 
+            ConcreteDecoratorEx1 decorator1 = new();
+            decorator1.SetTheComponent(cc);
+            decorator1.MakeHouse();
+            ConcreteDecoratorEx2 decorator2 = new();
+
+            //Adding results from decorator1
+            decorator2.SetTheComponent(decorator1);
+            decorator2.MakeHouse();
             Console.ReadKey();
         }
         #endregion

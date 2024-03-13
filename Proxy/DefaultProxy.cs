@@ -38,10 +38,7 @@ namespace Design_Pattern.Proxy
                 Console.WriteLine("Proxy call happening now...");
 
                 //Lazy initialization:We'll not instantiate until the method is //called
-                if (cs == null)
-                {
-                    cs = new ConcreteSubject();
-                }
+                cs ??= new ConcreteSubject();
 
                 cs.DoSomeWork();
             }
