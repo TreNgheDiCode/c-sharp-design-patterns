@@ -1,4 +1,5 @@
 ﻿using Design_Pattern.AbstractFactory;
+using Design_Pattern.Adapter;
 using Design_Pattern.Builder;
 using Design_Pattern.Decorator;
 using Design_Pattern.Prototype;
@@ -170,18 +171,30 @@ namespace DesignPatternsEx
         #endregion
 
         #region Decorator
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Decorator pattern Demo * **\n");
+        //    ConcreteComponent cc = new(); 
+        //    ConcreteDecoratorEx1 decorator1 = new();
+        //    decorator1.SetTheComponent(cc);
+        //    decorator1.MakeHouse();
+        //    ConcreteDecoratorEx2 decorator2 = new();
+
+        //    //Adding results from decorator1
+        //    decorator2.SetTheComponent(decorator1);
+        //    decorator2.MakeHouse();
+        //    Console.ReadKey();
+        //}
+        #endregion
+
+        #region Adapter
         static void Main(string[] args)
         {
-            Console.WriteLine("***Decorator pattern Demo * **\n");
-            ConcreteComponent cc = new(); 
-            ConcreteDecoratorEx1 decorator1 = new();
-            decorator1.SetTheComponent(cc);
-            decorator1.MakeHouse();
-            ConcreteDecoratorEx2 decorator2 = new();
+            Console.WriteLine("***Adapter Pattern Demo * **\n");
 
-            //Adding results from decorator1
-            decorator2.SetTheComponent(decorator1);
-            decorator2.MakeHouse();
+            Triangle t = new(20, 10);
+            Console.WriteLine("Area of Triangle is " + CalculatorAdapter.GetArea(t) + " Square unit");
+
             Console.ReadKey();
         }
         #endregion
