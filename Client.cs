@@ -1,7 +1,9 @@
 ﻿using Design_Pattern.AbstractFactory;
+using Design_Pattern.Builder;
 using Design_Pattern.Prototype;
 using Design_Pattern.Singleton;
 using System.Text;
+using static Design_Pattern.Proxy.DefaultProxy;
 
 namespace DesignPatternsEx
 {
@@ -34,29 +36,50 @@ namespace DesignPatternsEx
         #endregion
 
         #region Prototype
-        static void Main(string[] args)
-        {
-            Console.WriteLine("***Prototype Pattern Demo * **\n");
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Prototype Pattern Demo * **\n");
 
-            // Khởi tạo các bản sản phẩm là Nano và Ford (đều có phụ tùng là Basic Car)
-            // Dùng Basic Car dạng như là 1 khuôn xe hơi nhưng dùng mẫu mã khác nhau để thể hiện sản phẩm khác nhau
-            // trên ModelName và Price
-            BasicCar nano_base = new Nano("Green Nano") {Price = 100000};
-            BasicCar ford_base = new Ford("Ford Yellow") {Price = 500000};
+        //    // Khởi tạo các bản sản phẩm là Nano và Ford (đều có phụ tùng là Basic Car)
+        //    // Dùng Basic Car dạng như là 1 khuôn xe hơi nhưng dùng mẫu mã khác nhau để thể hiện sản phẩm khác nhau
+        //    // trên ModelName và Price
+        //    BasicCar nano_base = new Nano("Green Nano") {Price = 100000};
+        //    BasicCar ford_base = new Ford("Ford Yellow") {Price = 500000};
             
-            BasicCar bc1;
+        //    BasicCar bc1;
 
-            // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Nano
-            bc1 = nano_base.Clone();
-            bc1.Price = nano_base.Price + BasicCar.SetPrice();
-            Console.WriteLine("Car is: {0}, and it's price is Rs. {1} ",bc1.ModelName,bc1.Price);
+        //    // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Nano
+        //    bc1 = nano_base.Clone();
+        //    bc1.Price = nano_base.Price + BasicCar.SetPrice();
+        //    Console.WriteLine("Car is: {0}, and it's price is Rs. {1} ",bc1.ModelName,bc1.Price);
 
-            // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Ford
-            bc1 = ford_base.Clone();
-            bc1.Price = ford_base.Price + BasicCar.SetPrice();
-            Console.WriteLine("Car is: {0}, and it's price is Rs. {1}", bc1.ModelName, bc1.Price);
-            Console.ReadLine();
-        }
+        //    // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Ford
+        //    bc1 = ford_base.Clone();
+        //    bc1.Price = ford_base.Price + BasicCar.SetPrice();
+        //    Console.WriteLine("Car is: {0}, and it's price is Rs. {1}", bc1.ModelName, bc1.Price);
+        //    Console.ReadLine();
+        //}
+        #endregion
+
+        #region Builder
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Builder Pattern Demo * **");
+        //    Director director = new Director();
+        //    IBuilder b1 = new Car("Ford");
+        //    IBuilder b2 = new MotorCycle("Honda");
+
+        //    // Making Car
+        //    director.Construct(b1);
+        //    Product p1 = b1.GetVehicle();
+        //    p1.Show();
+
+        //    //Making MotorCycle
+        //    director.Construct(b2);
+        //    Product p2 = b2.GetVehicle();
+        //    p2.Show();
+        //    Console.ReadLine();
+        //}
         #endregion
 
         #region Abstract Factory
@@ -133,6 +156,16 @@ namespace DesignPatternsEx
 
         //    // Code tiếp khúc sau....
         //}
+        #endregion
+
+        #region Proxy
+        static void Main(string[] args)
+        {
+            Console.WriteLine("***Proxy Pattern Demo * **\n");
+            Proxy px = new Proxy();
+            px.DoSomeWork();
+            Console.ReadKey();
+        }
         #endregion
     }
 }
