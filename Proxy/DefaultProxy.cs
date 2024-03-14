@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Design_Pattern.Proxy
 {
     /// <summary>
-    /// Abstract class Subject
+    /// Đối tượng thực sự cần được truy cập thông qua Proxy
     /// </summary>
     public abstract class Subject
     {
@@ -15,27 +15,29 @@ namespace Design_Pattern.Proxy
     }
 
     /// <summary>
-    /// ConcreteSubject class
+    /// Định nghĩa các đối tượng thực hiện các công việc khác nhau
     /// </summary>
     public class ConcreteSubject : Subject
     {
         public override void DoSomeWork()
         {
-            Console.WriteLine("ConcreteSubject.DoSomeWork()");
+            Console.WriteLine("Đã thực hiện chức năng của ConcreteSubject");
         }
     }
 
     /// <summary>
-    /// Proxy class
+    /// Lớp Proxy chịu trách nhiệm thực hiện một số công việc được định nghĩa từ Subject
+    /// Có thể có nhiều proxy khác nhau, mỗi proxy sẽ thực hiện các công việc khác nhau từ Subject
     /// </summary>
     public class Proxy : Subject
     {
-        Subject cs = null!;
+        Subject? cs;
+
         public override void DoSomeWork()
         {
-            Console.WriteLine("Proxy call happening now...");
+            Console.WriteLine("Đang khởi động...");
 
-            //Lazy initialization:We'll not instantiate until the method is //called
+            // Lazy initialization: Chỉ sử dụng khi được gọi đến
             cs ??= new ConcreteSubject();
 
             cs.DoSomeWork();

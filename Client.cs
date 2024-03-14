@@ -67,27 +67,27 @@ namespace DesignPatternsEx
         #endregion
 
         #region Builder
-        static void Main(string[] args)
-        {
-            // In ra tiếng Việt
-            Console.OutputEncoding = Encoding.Unicode;
+        //static void Main(string[] args)
+        //{
+        //    // In ra tiếng Việt
+        //    Console.OutputEncoding = Encoding.Unicode;
 
-            Console.WriteLine("***Builder Pattern Demo * **");
-            IBuilder b1 = new Car("Ford");
-            IBuilder b2 = new MotorCycle("Honda");
+        //    Console.WriteLine("***Builder Pattern Demo * **");
+        //    IBuilder b1 = new Car("Ford");
+        //    IBuilder b2 = new MotorCycle("Honda");
 
-            // Làm xe hơi
-            Director.Construct(b1);
-            Product p1 = b1.GetVehicle();
-            p1.Show();
+        //    // Làm xe hơi
+        //    Director.Construct(b1);
+        //    Product p1 = b1.GetVehicle();
+        //    p1.Show();
 
-            // Làm xe máy
-            Director.Construct(b2);
-            Product p2 = b2.GetVehicle();
-            p2.Show();
+        //    // Làm xe máy
+        //    Director.Construct(b2);
+        //    Product p2 = b2.GetVehicle();
+        //    p2.Show();
 
-            Console.ReadLine();
-        }
+        //    Console.ReadLine();
+        //}
         #endregion
 
         #region Abstract Factory
@@ -97,6 +97,7 @@ namespace DesignPatternsEx
         //    Console.OutputEncoding = Encoding.UTF8;
 
         //    Console.WriteLine("***Abstract Factory Pattern Demo***\n");
+
         //    // Order một chú chó Hoang dã từ Đại lý
         //    // Đại lý sẽ chỉ định nhà máy chịu trách nhiệm sản xuất động vật Hoang dã
         //    IAnimalFactory wildAnimalFactory = new WildAnimalFactory();
@@ -167,13 +168,13 @@ namespace DesignPatternsEx
         #endregion
 
         #region Proxy
-        //static void Main(string[] args)
-        //{
-        //    Console.WriteLine("***Proxy Pattern Demo * **\n");
-        //    Proxy px = new Proxy();
-        //    px.DoSomeWork();
-        //    Console.ReadKey();
-        //}
+        static void Main(string[] args)
+        {
+            Console.WriteLine("***Proxy Pattern Demo * **\n");
+            Proxy px = new();
+            px.DoSomeWork();
+            Console.ReadKey();
+        }
         #endregion
 
         #region Decorator
