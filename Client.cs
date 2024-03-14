@@ -9,6 +9,7 @@ using Design_Pattern.Singleton;
 using System.Text;
 using Design_Pattern.Proxy;
 using Design_Pattern.Composite;
+using Design_Pattern.Template;
 
 namespace DesignPatternsEx
 {
@@ -205,18 +206,18 @@ namespace DesignPatternsEx
         #endregion
 
         #region Adapter
-        static void Main(string[] args)
-        {
-            // In ra tiếng Việt
-            Console.OutputEncoding = Encoding.Unicode;
+        //static void Main(string[] args)
+        //{
+        //    // In ra tiếng Việt
+        //    Console.OutputEncoding = Encoding.Unicode;
 
-            Console.WriteLine("***Adapter Pattern Demo * **\n");
+        //    Console.WriteLine("***Adapter Pattern Demo * **\n");
 
-            Triangle t = new(20, 10);
-            Console.WriteLine("Diện tích hình tam giác là " + CalculatorAdapter.GetArea(t) + " mét vuông");
+        //    Triangle t = new(20, 10);
+        //    Console.WriteLine("Diện tích hình tam giác là " + CalculatorAdapter.GetArea(t) + " mét vuông");
 
-            Console.ReadKey();
-        }
+        //    Console.ReadKey();
+        //}
         #endregion
 
         #region Facade
@@ -339,6 +340,21 @@ namespace DesignPatternsEx
 
         //    Console.ReadKey();
         //}
+        #endregion
+
+        #region Template Method
+        static void Main(string[] args)
+        {
+            // In ra tiếng Việt
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Console.WriteLine("***Template Method Pattern Demo * **\n");
+
+            SimpleCrawlerApp tuoitre = new TuoiTreCrawler();
+            tuoitre.Crawl("https://tuoitre.vn/thu-tuong-lam-ro-vi-sao-doanh-nghiep-kho-tiep-can-von-du-tien-gui-vao-ngan-hang-tang-2024031409365941.htm");
+
+            Console.ReadLine();
+        }
         #endregion
     }
 }
