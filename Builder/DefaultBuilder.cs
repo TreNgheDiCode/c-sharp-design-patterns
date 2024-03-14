@@ -1,6 +1,6 @@
 ﻿namespace Design_Pattern.Builder
 {
-    // Builders common interface
+    // Builder giống kiểu như một hướng dẫn cho việc xây dựng một sản phẩm gồm những công đoạn nào.
     interface IBuilder
     {
         void StartUpOperations();
@@ -11,7 +11,7 @@
         Product GetVehicle();
     } 
     
-    // ConcreteBuilder: Car
+    // Mẫu mã được xây dựng từ các công đoạn xây dựng của IBuilder.
     class Car : IBuilder
     {
         private readonly string brandName;
@@ -20,39 +20,41 @@
         public Car(string brand)
         {
             product = new Product();
-            this.brandName = brand;
+            brandName = brand;
         }
 
         public void StartUpOperations()
-        { //Starting with brandname
-            product.Add(string.Format("Car Model name:{0} ",this.brandName));
+        { 
+            // In ra mẫu mã của xe hơi
+            product.Add(string.Format("Mẫu mã: {0}",brandName));
         }
         
         public void BuildBody()
         {
-            product.Add("This is a body of a Car");
+            product.Add("Xây dựng thân xe hơi thành công");
         }
         public void InsertWheels()
         {
-            product.Add("4 wheels are added");
+            product.Add("Đã lắp ráp 4 bánh vào xe");
         }
 
         public void AddHeadlights()
         {
-            product.Add("2 Headlights are added");
+            product.Add("Đã thêm vào 2 đèn xe");
         }
 
         public void EndOperations()
-        { //Nothing in this case
+        { 
+            // Nothing in this case
         }
 
         public Product GetVehicle()
         {
             return product;
         }
-    } 
-    
-    // ConcreteBuilder:Motorcycle
+    }
+
+    // Mẫu mã được xây dựng từ các công đoạn xây dựng của IBuilder.
     class MotorCycle : IBuilder
     {
         private readonly string brandName;
@@ -61,7 +63,7 @@
         public MotorCycle(string brand)
         {
             product = new Product();
-            this.brandName = brand;
+            brandName = brand;
         }
 
         public void StartUpOperations()
@@ -71,23 +73,23 @@
 
         public void BuildBody()
         {
-            product.Add("This is a body of a Motorcycle");
+            product.Add("Xây dựng thân xe máy thành công");
         }
 
         public void InsertWheels()
         {
-            product.Add("2 wheels are added");
+            product.Add("Đã thêm vào 2 bánh");
         }
 
         public void AddHeadlights()
         {
-            product.Add("1 Headlights are added");
+            product.Add("Đã thêm vào 1 đèn xe");
         }
 
         public void EndOperations()
         {
-            // Finishing up with brandname
-            product.Add(string.Format("Motorcycle Model name:{0}", this.brandName));
+            // Thể hiện mẫu mã ở cuối công đoạn
+            product.Add(string.Format("Mẫu mã: {0}", this.brandName));
         }
 
         public Product GetVehicle()
@@ -99,8 +101,10 @@
     // "Product"
     class Product
     {
-        // We can use any data structure that you prefer e.g.List<string> etc.
-        private LinkedList<string> parts;
+        // Ở đây có thể dùng bất cứ cấu trúc dữ liệu danh sách nào tùy thích.
+        // Mình sử dụng LinkedList bởi cơ chế của nó giúp việc thêm và xóa phần tử nhanh hơn.
+        // Còn nếu cần đến chức năng tìm kiếm phần tử thì mình sẽ sử dụng List.
+        private readonly LinkedList<string> parts;
 
         public Product()
         {
@@ -122,25 +126,18 @@
         }
     }
     
-    // "Director"
+    // "Director" - Hay cũng có thể coi là đạo diễn
+    // Đạo diễn sẽ chỉ đạo cho các công đoạn xây dựng của IBuilder được thực hiện theo trình tự nào.
     class Director
     {
-        IBuilder builder;
-
-        // A series of steps - in real life, steps are complex.
-        public void Construct(IBuilder builder)
+        // Các bước thực hiện, tùy theo thực tế mà những bước này sẽ phức tạp.
+        public static void Construct(IBuilder builder)
         {
-            this.builder = builder;
             builder.StartUpOperations();
             builder.BuildBody();
             builder.InsertWheels();
             builder.AddHeadlights();
             builder.EndOperations();
         }
-    }
-    
-    class Program
-    {
-        
     }
 }

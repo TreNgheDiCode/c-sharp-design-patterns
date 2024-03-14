@@ -23,10 +23,10 @@ namespace DesignPatternsEx
         //    Console.WriteLine("***Singleton Pattern Demo * **\n");
 
         //    Console.WriteLine("Khởi tạo đối tượng Singleton s1.");
-        //    NoneSealedNestedDerivedSingleton.NestedDerived s1 = new();
+        //    Singleton s1 = Singleton.Instance;
 
         //    Console.WriteLine("Khởi tạo đối tượng Singleton s2.");
-        //    NoneSealedNestedDerivedSingleton.NestedDerived s2 = new();
+        //    Singleton s2 = Singleton.Instance;
 
         //    if (s1 == s2)
         //    {
@@ -48,15 +48,15 @@ namespace DesignPatternsEx
         //    // Khởi tạo các bản sản phẩm là Nano và Ford (đều có phụ tùng là Basic Car)
         //    // Dùng Basic Car dạng như là 1 khuôn xe hơi nhưng dùng mẫu mã khác nhau để thể hiện sản phẩm khác nhau
         //    // trên ModelName và Price
-        //    BasicCar nano_base = new Nano("Green Nano") {Price = 100000};
-        //    BasicCar ford_base = new Ford("Ford Yellow") {Price = 500000};
+        //    BasicCar nano_base = new Nano("Green Nano") { Price = 100000 };
+        //    BasicCar ford_base = new Ford("Ford Yellow") { Price = 500000 };
 
         //    BasicCar bc1;
 
         //    // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Nano
         //    bc1 = nano_base.Clone();
         //    bc1.Price = nano_base.Price + BasicCar.SetPrice();
-        //    Console.WriteLine("Car is: {0}, and it's price is Rs. {1} ",bc1.ModelName,bc1.Price);
+        //    Console.WriteLine("Car is: {0}, and it's price is Rs. {1} ", bc1.ModelName, bc1.Price);
 
         //    // Clone từ sản phẩm gốc (không nhầm lẫn với mẫu gốc là BasicCar nhé), ở đây là Ford
         //    bc1 = ford_base.Clone();
@@ -67,24 +67,27 @@ namespace DesignPatternsEx
         #endregion
 
         #region Builder
-        //static void Main(string[] args)
-        //{
-        //    Console.WriteLine("***Builder Pattern Demo * **");
-        //    Director director = new Director();
-        //    IBuilder b1 = new Car("Ford");
-        //    IBuilder b2 = new MotorCycle("Honda");
+        static void Main(string[] args)
+        {
+            // In ra tiếng Việt
+            Console.OutputEncoding = Encoding.Unicode;
 
-        //    // Making Car
-        //    director.Construct(b1);
-        //    Product p1 = b1.GetVehicle();
-        //    p1.Show();
+            Console.WriteLine("***Builder Pattern Demo * **");
+            IBuilder b1 = new Car("Ford");
+            IBuilder b2 = new MotorCycle("Honda");
 
-        //    //Making MotorCycle
-        //    director.Construct(b2);
-        //    Product p2 = b2.GetVehicle();
-        //    p2.Show();
-        //    Console.ReadLine();
-        //}
+            // Làm xe hơi
+            Director.Construct(b1);
+            Product p1 = b1.GetVehicle();
+            p1.Show();
+
+            // Làm xe máy
+            Director.Construct(b2);
+            Product p2 = b2.GetVehicle();
+            p2.Show();
+
+            Console.ReadLine();
+        }
         #endregion
 
         #region Abstract Factory
@@ -241,7 +244,7 @@ namespace DesignPatternsEx
         //        myfactory.GetRobotFromFactory("Small");
         //        shape.Print();
         //    }
-            
+
         //    int NumOfDistinctRobots = myfactory.TotalObjectsCreated;
         //    Console.WriteLine("\n Now, total numbers of distinct robot objects is = {0}\n", NumOfDistinctRobots);
         //    /*
@@ -256,7 +259,7 @@ namespace DesignPatternsEx
         //        myfactory.GetRobotFromFactory("Large");
         //        shape.Print();
         //    }
-            
+
         //    NumOfDistinctRobots = myfactory.TotalObjectsCreated;
         //    Console.WriteLine("\n Distinct Robot objects created till now = {0}", NumOfDistinctRobots);
 
@@ -265,63 +268,63 @@ namespace DesignPatternsEx
         #endregion
 
         #region Composite
-        static void Main(string[] args)
-        {
-            Console.WriteLine("***Composite Pattern Demo * **");
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Composite Pattern Demo * **");
 
-            // Principal of the college
-            CompositeEmployee Principal = new("Dr.S.Som(Principal)", "PlanningSupervising-Managing");
+        //    // Principal of the college
+        //    CompositeEmployee Principal = new("Dr.S.Som(Principal)", "PlanningSupervising-Managing");
 
-            // The College has 2 Head of Departments - One from Mathematics, 1 from Computer Sc.
-            CompositeEmployee hodMaths = new("Mrs.S.Das(HOD-Maths)", "Maths");
-            CompositeEmployee hodCompSc = new("Mr. V.Sarcar(HOD-CSE)", "ComputerSc.");
+        //    // The College has 2 Head of Departments - One from Mathematics, 1 from Computer Sc.
+        //    CompositeEmployee hodMaths = new("Mrs.S.Das(HOD-Maths)", "Maths");
+        //    CompositeEmployee hodCompSc = new("Mr. V.Sarcar(HOD-CSE)", "ComputerSc.");
 
-            // 2 other teachers works in Mathematics department
-            Employee mathTeacher1 = new("Math Teacher - 1", "Maths");
-            Employee mathTeacher2 = new("Math Teacher - 2", "Maths");
+        //    // 2 other teachers works in Mathematics department
+        //    Employee mathTeacher1 = new("Math Teacher - 1", "Maths");
+        //    Employee mathTeacher2 = new("Math Teacher - 2", "Maths");
 
-            // 3 other teachers works in Computer Sc. department
-            Employee cseTeacher1 = new("CSE Teacher - 1","Computer Sc.");
-            Employee cseTeacher2 = new("CSE Teacher - 2", "Computer Sc.");
-            Employee cseTeacher3 = new("CSE Teacher - 3", "Computer Sc.");
+        //    // 3 other teachers works in Computer Sc. department
+        //    Employee cseTeacher1 = new("CSE Teacher - 1","Computer Sc.");
+        //    Employee cseTeacher2 = new("CSE Teacher - 2", "Computer Sc.");
+        //    Employee cseTeacher3 = new("CSE Teacher - 3", "Computer Sc.");
 
-            // Teachers of Mathematics directly reports to HOD - Maths
-            hodMaths.Add(mathTeacher1);
-            hodMaths.Add(mathTeacher2);
+        //    // Teachers of Mathematics directly reports to HOD - Maths
+        //    hodMaths.Add(mathTeacher1);
+        //    hodMaths.Add(mathTeacher2);
 
-            // Teachers of Computer Sc. directly reports to HOD - CSE
-            hodCompSc.Add(cseTeacher1);
-            hodCompSc.Add(cseTeacher2);
-            hodCompSc.Add(cseTeacher3);
+        //    // Teachers of Computer Sc. directly reports to HOD - CSE
+        //    hodCompSc.Add(cseTeacher1);
+        //    hodCompSc.Add(cseTeacher2);
+        //    hodCompSc.Add(cseTeacher3);
 
-            // Principal is on top of college
-            // HOD -Maths and Comp. Sc directly reports to him
-            Principal.Add(hodMaths);
-            Principal.Add(hodCompSc);
+        //    // Principal is on top of college
+        //    // HOD -Maths and Comp. Sc directly reports to him
+        //    Principal.Add(hodMaths);
+        //    Principal.Add(hodCompSc);
 
-            // Printing the leaf-nodes and branche in the same way.
-            // i.e. in each case, we are calling PrintStructures()
-            // methodConsole.WriteLine("\n Testing the structure of a Principal object");
+        //    // Printing the leaf-nodes and branche in the same way.
+        //    // i.e. in each case, we are calling PrintStructures()
+        //    // methodConsole.WriteLine("\n Testing the structure of a Principal object");
 
-            // Prints the complete structure
-            Principal.PrintStructures();
-            Console.WriteLine("\n Testing the structure of a HOD object:");
-            Console.WriteLine("Teachers working at Computer Science department: ");
+        //    // Prints the complete structure
+        //    Principal.PrintStructures();
+        //    Console.WriteLine("\n Testing the structure of a HOD object:");
+        //    Console.WriteLine("Teachers working at Computer Science department: ");
 
-            //Prints the details of Computer Sc. department
-            hodCompSc.PrintStructures();
+        //    //Prints the details of Computer Sc. department
+        //    hodCompSc.PrintStructures();
 
-            //Leaf node
-            Console.WriteLine("\n Testing the structure of a leaf node: ");
-            mathTeacher1.PrintStructures();
+        //    //Leaf node
+        //    Console.WriteLine("\n Testing the structure of a leaf node: ");
+        //    mathTeacher1.PrintStructures();
 
-            //Suppose, one computer teacher is leaving now from the organization.
-            hodCompSc.Remove(cseTeacher2);
-            Console.WriteLine("\n After CSE Teacher - 2 resigned, the organization has following members: ");
-            Principal.PrintStructures();
+        //    //Suppose, one computer teacher is leaving now from the organization.
+        //    hodCompSc.Remove(cseTeacher2);
+        //    Console.WriteLine("\n After CSE Teacher - 2 resigned, the organization has following members: ");
+        //    Principal.PrintStructures();
 
-            Console.ReadKey();
-        }
+        //    Console.ReadKey();
+        //}
         #endregion
     }
 }
