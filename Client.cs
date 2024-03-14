@@ -178,42 +178,45 @@ namespace DesignPatternsEx
         #endregion
 
         #region Decorator
-        static void Main(string[] args)
-        {
-            // In ra tiếng Việt
-            Console.OutputEncoding = Encoding.UTF8;
-
-            Console.WriteLine("***Decorator pattern Demo * **\n");
-
-            // Tạo ra nhà cơ bản
-            ConcreteComponent cc = new();
-
-            // Thêm tàng mới cho ngôi nhà
-            ConcreteDecoratorEx1 decorator1 = new();
-            // Truyền vào cấu trúc hiện tại của ngôi nhà
-            decorator1.SetTheComponent(cc);
-            decorator1.MakeHouse();
-
-            // Sơn nhà
-            ConcreteDecoratorEx2 decorator2 = new();
-            // Truyền vào cấu trúc hiện tại sau khi đã thêm tầng mới
-            decorator2.SetTheComponent(decorator1);
-            decorator2.MakeHouse();
-
-            Console.ReadKey();
-        }
-        #endregion
-
-        #region Adapter
         //static void Main(string[] args)
         //{
-        //    Console.WriteLine("***Adapter Pattern Demo * **\n");
+        //    // In ra tiếng Việt
+        //    Console.OutputEncoding = Encoding.UTF8;
 
-        //    Triangle t = new(20, 10);
-        //    Console.WriteLine("Area of Triangle is " + CalculatorAdapter.GetArea(t) + " Square unit");
+        //    Console.WriteLine("***Decorator pattern Demo * **\n");
+
+        //    // Tạo ra nhà cơ bản
+        //    ConcreteComponent cc = new();
+
+        //    // Thêm tàng mới cho ngôi nhà
+        //    ConcreteDecoratorEx1 decorator1 = new();
+        //    // Truyền vào cấu trúc hiện tại của ngôi nhà
+        //    decorator1.SetTheComponent(cc);
+        //    decorator1.MakeHouse();
+
+        //    // Sơn nhà
+        //    ConcreteDecoratorEx2 decorator2 = new();
+        //    // Truyền vào cấu trúc hiện tại sau khi đã thêm tầng mới
+        //    decorator2.SetTheComponent(decorator1);
+        //    decorator2.MakeHouse();
 
         //    Console.ReadKey();
         //}
+        #endregion
+
+        #region Adapter
+        static void Main(string[] args)
+        {
+            // In ra tiếng Việt
+            Console.OutputEncoding = Encoding.Unicode;
+
+            Console.WriteLine("***Adapter Pattern Demo * **\n");
+
+            Triangle t = new(20, 10);
+            Console.WriteLine("Diện tích hình tam giác là " + CalculatorAdapter.GetArea(t) + " mét vuông");
+
+            Console.ReadKey();
+        }
         #endregion
 
         #region Facade

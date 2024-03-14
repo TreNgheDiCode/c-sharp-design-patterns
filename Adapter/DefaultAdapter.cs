@@ -15,6 +15,7 @@ namespace Design_Pattern.Adapter
     
     class Calculator
     {
+        // Diện tích hình chữ nhật = chiều dài * chiều rộng
         public static double GetArea(Rect rect)
         {
             return rect.length * rect.width;
@@ -23,12 +24,13 @@ namespace Design_Pattern.Adapter
 
     class Triangle
     {
-        public double baseT; // base
-        public double height; // height
+
+        public double baseT; // đáy
+        public double height; // cao
         public Triangle(int b, int h)
         {
-            this.baseT = b;
-            this.height = h;
+            baseT = b;
+            height = h;
         }
     }
 
@@ -36,9 +38,11 @@ namespace Design_Pattern.Adapter
     {
         public static double GetArea(Triangle triangle)
         {
+            // Tính diện tích hình tam giác thông qua diện tích hình chữ nhật
             Rect rect = new()
             {
-                // Area of Triangle =0.5*base*height
+                // Diện tích hình tam giác = 0.5 * đáy * chiều cao
+                // Có thể hiểu công thức này thành a * b > hình chữ nhật
                 length = triangle.baseT,
                 width = 0.5 * triangle.height
             };
