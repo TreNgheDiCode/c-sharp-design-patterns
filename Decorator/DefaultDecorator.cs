@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 namespace Design_Pattern.Decorator
 {
+    // Thành phần cơ bản của việc xây dựng một ngôi nhà.
     public abstract class Component
     {
         public abstract void MakeHouse();
     }
 
+    // Kiến trúc cơ bản của thành phần ngôi nhà.
+    // Chúng ta có thể thêm các concrete component khác nhau như: Bedroom, Kitchen, Living Room, etc.
+    // Khi đó sẽ đổi tên hàm MakeHouse thành MakeBedroom, MakeKitchen, MakeLivingRoom, etc.
     public class ConcreteComponent : Component
     {
         public override void MakeHouse()
         {
-            Console.WriteLine("Original House is complete. It is closed for modification.");
+            Console.WriteLine("Nhà cơ bản đã xây xong. Không thể tái xây dựng cấu trúc căn nhà.");
         }
     }
 
     public abstract class AbstractDecorator : Component
     {
-        protected Component com;
+        protected Component? com;
 
         public void SetTheComponent(Component c)
         {
@@ -30,10 +34,7 @@ namespace Design_Pattern.Decorator
 
         public override void MakeHouse()
         {
-            if (com != null)
-            {
-                com.MakeHouse(); //Delegating the task
-            }
+            com?.MakeHouse(); // Ủy quyền
         }
     }
 
@@ -42,15 +43,16 @@ namespace Design_Pattern.Decorator
         public override void MakeHouse()
         {
             base.MakeHouse();
-            Console.WriteLine("***Using a decorator***");
-            //Decorating now.
+
+            Console.WriteLine("***Bắt đầu thêm tầng mới***");
+
+            // Thêm một tầng mới.
             AddFloor();
-            //You can put additional stuff as per your needs.
         }
 
-        private void AddFloor()
+        private static void AddFloor()
         {
-            Console.WriteLine("I am making an additional floor on top of it.");
+            Console.WriteLine("Tầng mới của ngôi nhà đã được xây xong.");
         }
     }
 
@@ -60,15 +62,16 @@ namespace Design_Pattern.Decorator
         {
             Console.WriteLine("");
             base.MakeHouse();
-            Console.WriteLine("***Using another decorator***");
-            //Decorating now.
+
+            Console.WriteLine("***Bắt đầu sơn nhà***");
+
+            // Sơn nhà.
             PaintTheHouse();
-            //You can put additional stuff as per your needs.
         }
 
-        private void PaintTheHouse()
+        private static void PaintTheHouse()
         {
-            Console.WriteLine("Now I am painting the house.");
+            Console.WriteLine("Đã sơn xong nhà.");
         }
     }
 }

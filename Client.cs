@@ -168,30 +168,40 @@ namespace DesignPatternsEx
         #endregion
 
         #region Proxy
-        static void Main(string[] args)
-        {
-            Console.WriteLine("***Proxy Pattern Demo * **\n");
-            Proxy px = new();
-            px.DoSomeWork();
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("***Proxy Pattern Demo * **\n");
+        //    Proxy px = new();
+        //    px.DoSomeWork();
+        //    Console.ReadKey();
+        //}
         #endregion
 
         #region Decorator
-        //static void Main(string[] args)
-        //{
-        //    Console.WriteLine("***Decorator pattern Demo * **\n");
-        //    ConcreteComponent cc = new(); 
-        //    ConcreteDecoratorEx1 decorator1 = new();
-        //    decorator1.SetTheComponent(cc);
-        //    decorator1.MakeHouse();
-        //    ConcreteDecoratorEx2 decorator2 = new();
+        static void Main(string[] args)
+        {
+            // In ra tiếng Việt
+            Console.OutputEncoding = Encoding.UTF8;
 
-        //    //Adding results from decorator1
-        //    decorator2.SetTheComponent(decorator1);
-        //    decorator2.MakeHouse();
-        //    Console.ReadKey();
-        //}
+            Console.WriteLine("***Decorator pattern Demo * **\n");
+
+            // Tạo ra nhà cơ bản
+            ConcreteComponent cc = new();
+
+            // Thêm tàng mới cho ngôi nhà
+            ConcreteDecoratorEx1 decorator1 = new();
+            // Truyền vào cấu trúc hiện tại của ngôi nhà
+            decorator1.SetTheComponent(cc);
+            decorator1.MakeHouse();
+
+            // Sơn nhà
+            ConcreteDecoratorEx2 decorator2 = new();
+            // Truyền vào cấu trúc hiện tại sau khi đã thêm tầng mới
+            decorator2.SetTheComponent(decorator1);
+            decorator2.MakeHouse();
+
+            Console.ReadKey();
+        }
         #endregion
 
         #region Adapter
